@@ -355,24 +355,26 @@ findbar .findbar-closebutton {
 }
 
 
-/* windows 10 */
-#main-window[sizemode="normal"] #titlebar {
-    margin-top: 2px !important;
-}
-#main-window[sizemode="normal"] #titlebar + * {
-    margin-top: -2px !important;
-}
-#main-window[sizemode="normal"] .titlebar-buttonbox .titlebar-button {
-    margin-top: -2px !important;
-}
-.titlebar-buttonbox .titlebar-button {
-    max-height: 26px !important;
-    min-height: 26px !important;
-    padding: 6px 12px !important;
-}
-#bookmarks-menu-button,
-#nav-bar-overflow-button,
-#PlacesToolbarItems > .bookmark-item {
-    margin-top: 0px !important;
+/* windows 10 fixes, not sure if they apply to 8 */
+@media (-moz-os-version:windows-win10), (-moz-os-version:windows-win8) {
+    #main-window[sizemode="normal"] #titlebar {
+        margin-top: 2px !important;
+    }
+    #main-window[sizemode="normal"] #titlebar + * {
+        margin-top: -2px !important;
+    }
+    #main-window[sizemode="normal"] .titlebar-buttonbox .titlebar-button {
+        margin-top: -2px !important;
+    }
+    .titlebar-buttonbox .titlebar-button {
+        max-height: 26px !important;
+        min-height: 26px !important;
+        padding: 6px 12px !important;
+    }
+    #bookmarks-menu-button,
+    #nav-bar-overflow-button,
+    #PlacesToolbarItems > .bookmark-item {
+        margin-top: 0px !important;
+    }
 }
 
