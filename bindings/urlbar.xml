@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+-*- Mode: HTML -*-
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at http://mozilla.org/MPL/2.0/.
+-->
+<!DOCTYPE bindings>
+<bindings id="urlbarBindings" xmlns="http://www.mozilla.org/xbl" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:xbl="http://www.mozilla.org/xbl">
+  <binding id="PopupAutoCompleteRichResult" extends="chrome://browser/content/urlbarBindings.xml#urlbar-rich-result-popup">
+    <implementation>
+      <method name="_openAutocompletePopup">
+        <parameter name="aInput"/>
+        <parameter name="aElement"/>
+        <body><![CDATA[
+          if (this.mPopupOpen) {
+            return;
+          }
+
+          // Set the direction of the popup based on the textbox (bug 649840).
+          // getComputedStyle causes a layout flush, so avoid calling it if a
+          // direction has already been set.
+          if (!this.style.direction) {
+            this.style.direction =
+              aElement.ownerGlobal.getComputedStyle(aElement).direction;
+          }
+          let popupDirection = this.style.direction;
+
+          // Make the popup span the width of the parent.  First, set its width.
+          let documentRect =
+            window.windowUtils
+                .getBoundsWithoutFlushing(this.parentNode); // userChrome: window.document.documentElement -- this.parentNode
+          let width = documentRect.right - documentRect.left;
+          this.setAttribute("width", width);
+
+          // Now make its starting margin negative so that its leading edge
+          // aligns with the window border.
+          /* or not // userChrome: removed
+          let elementRect =
+            window.windowUtils.getBoundsWithoutFlushing(aElement);
+          if (popupDirection == "rtl") {
+            let offset = elementRect.right - documentRect.right;
+            this.style.marginRight = offset + "px";
+          } else {
+            let offset = documentRect.left - elementRect.left;
+            this.style.marginLeft = offset + "px";
+          }
+          */
+
+          // Keep the popup items' site icons aligned with the urlbar's identity
+          // icon if it's not too far from the edge of the window.  We define
+          // "too far" as "more than 30% of the window's width AND more than
+          // 250px".  Do this *before* adding any items because when the new
+          // value of the margins are different from the previous value, over-
+          // and underflow must be handled for each item already in the popup.
+          let needsHandleOverUnderflow = false;
+          let boundToCheck = popupDirection == "rtl" ? "right" : "left";
+          let inputRect = window.windowUtils.getBoundsWithoutFlushing(aInput);
+          let startOffset = Math.abs(inputRect[boundToCheck] - documentRect[boundToCheck]);
+          let alignSiteIcons = startOffset / width <= 0.3 || startOffset <= 250;
+          if (alignSiteIcons) {
+            // Calculate the end margin if we have a start margin.
+            let boundToCheckEnd = popupDirection == "rtl" ? "left" : "right";
+            let endOffset = Math.abs(inputRect[boundToCheckEnd] -
+                                     documentRect[boundToCheckEnd]);
+            if (endOffset > startOffset * 2) {
+              // Provide more space when aligning would result in an unbalanced
+              // margin. This allows the location bar to be moved to the start
+              // of the navigation toolbar to reclaim space for results.
+              endOffset = startOffset;
+            }
+            let identityIcon = document.getElementById("identity-icon");
+            let identityRect =
+              window.windowUtils.getBoundsWithoutFlushing(identityIcon);
+            let start = popupDirection == "rtl" ?
+                        documentRect.right - identityRect.right :
+                        identityRect.left;
+            if (!this.margins || start != this.margins.start ||
+                                 endOffset != this.margins.end ||
+                                 width != this.margins.width) {
+              this.margins = { start, end: endOffset, width };
+              needsHandleOverUnderflow = true;
+            }
+          } else if (this.margins) {
+            // Reset the alignment so that the site icons are positioned
+            // according to whatever's in the CSS.
+            this.margins = undefined;
+            needsHandleOverUnderflow = true;
+          }
+
+          // Now that the margins have been set, start adding items (via
+          // _invalidate).
+          this.mInput = aInput;
+          this.input.controller.setInitiallySelectedIndex(this._isFirstResultHeuristic ? 0 : -1);
+          this.input.userSelectionBehavior = "none";
+          this._invalidate();
+
+          try {
+            let whichNotification = aInput.whichSearchSuggestionsNotification;
+            if (whichNotification != "none") {
+              // Update the impressions count on real popupshown, since there's
+              // no guarantee openPopup will be respected by the platform.
+              // Though, we must ensure the handled event is the expected one.
+              let impressionId = this._searchSuggestionsImpressionId = {};
+              this.addEventListener("popupshown", () => {
+                if (this._searchSuggestionsImpressionId == impressionId)
+                  aInput.updateSearchSuggestionsNotificationImpressions(whichNotification);
+              }, {once: true});
+              this._showSearchSuggestionsNotification(whichNotification, popupDirection);
+            } else if (this.classList.contains("showSearchSuggestionsNotification")) {
+              this._hideSearchSuggestionsNotification();
+            }
+          } catch (ex) {
+            // Not critical for the urlbar functionality, just report the error.
+            Cu.reportError(ex);
+          }
+
+          // Position the popup below the navbar.  To get the y-coordinate,
+          // which is an offset from the bottom of the input, subtract the
+          // bottom of the navbar from the buttom of the input.
+          let yOffset = Math.round(
+            window.windowUtils.getBoundsWithoutFlushing(document.getElementById("nav-bar")).bottom -
+            window.windowUtils.getBoundsWithoutFlushing(aInput).bottom);
+
+          if (!this.richlistbox.suppressMenuItemEvent && this.richlistbox.currentItem) {
+            // The richlistbox fired a DOMMenuItemActive for accessibility,
+            // but because the popup isn't open yet, accessibility will ignore
+            // it. Therefore, fire it again once the popup opens.
+            this.addEventListener("popupshown", () => {
+              this.richlistbox.currentItem._fireEvent("DOMMenuItemActive");
+            }, {once: true});
+          }
+
+          this.openPopup(aElement, "after_start", 0, yOffset, false, false);
+
+          // Do this immediately after we've requested the popup to open. This
+          // will cause sync reflows but prevents flickering.
+          if (needsHandleOverUnderflow) {
+            for (let item of this.richlistbox.children) {
+              item.handleOverUnderflow();
+            }
+          }
+        ]]></body>
+      </method>
+    </implementation>
+  </binding>
+</bindings>
