@@ -2,6 +2,7 @@
 
 @import "./ac_popup_classic_with_two_lines_fx64.css";
 @import "./ac_popup_searchwith_and_visit_items_hidden.css";
+@import "./context_bfrsb_labels_without_icons.css";
 
 #main-window:not([customizing]) #nav-bar {
     /* make it 1px to show the border */
@@ -26,8 +27,8 @@
 
 /* colors */
 #main-window {
-    /*--uc-main-color: inherit;*/
-    /*--uc-main-color-light: rgb(40, 140, 230);*/
+    --uc-main-color: rgb(10, 110, 200);
+    --uc-main-color-light: rgb(40, 140, 230);
     
     --uc-tab-border-color: rgb(160, 160, 160);
     
@@ -170,7 +171,7 @@ input.urlbar-input[textoverflow="start"]:not([focused]) {
 }
 
 /* RICH RESULTS */
-#PopupAutoCompleteRichResult {
+#PopupAutoCompleteRichResult[autocompleteinput="urlbar"] {
     -moz-binding: url("bindings/urlbar.xml#PopupAutoCompleteRichResult") !important;
     border: 1px solid var(--uc-tab-border-color) !important;
 }
@@ -265,8 +266,8 @@ input.urlbar-input[textoverflow="start"]:not([focused]) {
 }
 #new-tab-button,
 #alltabs-button,
-#TabsToolbar .scrollbutton-up,
-#TabsToolbar .scrollbutton-down,
+#tabbrowser-tabs .scrollbutton-up,
+#tabbrowser-tabs .scrollbutton-down,
 #TabsToolbar-customization-target .toolbarbutton-1 {
     /*
     --uc-padding-horz: 3px;
@@ -282,8 +283,8 @@ input.urlbar-input[textoverflow="start"]:not([focused]) {
 }
 #new-tab-button .toolbarbutton-icon,
 #alltabs-button .toolbarbutton-icon,
-#TabsToolbar .scrollbutton-up .toolbarbutton-icon,
-#TabsToolbar .scrollbutton-down .toolbarbutton-icon,
+#tabbrowser-tabs .scrollbutton-up .toolbarbutton-icon,
+#tabbrowser-tabs .scrollbutton-down .toolbarbutton-icon,
 #TabsToolbar-customization-target .toolbarbutton-1 .toolbarbutton-icon {
     width: calc(var(--uc-icon-size) + var(--uc-padding-horz) * 2) !important;
     height: calc(var(--uc-icon-size) + var(--uc-padding-vert) * 2) !important;
@@ -328,6 +329,7 @@ input.urlbar-input[textoverflow="start"]:not([focused]) {
 /* custom hover, apply it to all items in the bookmark bar */
 #bookmarks-menu-button,
 #nav-bar-overflow-button,
+#PlacesChevron,
 #PlacesToolbarItems > .bookmark-item {
     -moz-appearance: toolbarbutton !important;
     margin-top: -1px !important;
