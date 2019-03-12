@@ -1,0 +1,10 @@
+
+#main-window {
+    --uc-main-color: black;
+    --uc-main-color-light: black;
+    
+    --uc-tab-border-color: rgb(160, 160, 160);
+    
+    --uc-toolbar-background: rgb(245, 245, 245);
+    --uc-inactive-tab-background: rgb(227, 228, 230);
+}
