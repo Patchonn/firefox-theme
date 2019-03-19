@@ -112,6 +112,7 @@
     min-width: 300px !important;
     width: 450px !important;
     
+    max-height: 24px !important;
     min-height: 24px !important;
     height: 24px !important;
     border-radius: 0px !important;
@@ -259,7 +260,7 @@ input.urlbar-input[textoverflow="start"]:not([focused]) {
 #alltabs-button,
 #tabbrowser-tabs .scrollbutton-up,
 #tabbrowser-tabs .scrollbutton-down,
-#TabsToolbar-customization-target .toolbarbutton-1 {
+#TabsToolbar .toolbarbutton-1 {
     /*
     --uc-padding-horz: 3px;
     --uc-padding-vert: 5px;
@@ -276,7 +277,7 @@ input.urlbar-input[textoverflow="start"]:not([focused]) {
 #alltabs-button .toolbarbutton-icon,
 #tabbrowser-tabs .scrollbutton-up .toolbarbutton-icon,
 #tabbrowser-tabs .scrollbutton-down .toolbarbutton-icon,
-#TabsToolbar-customization-target .toolbarbutton-1 .toolbarbutton-icon {
+#TabsToolbar .toolbarbutton-1 .toolbarbutton-icon {
     width: calc(var(--uc-icon-size) + var(--uc-padding-horz) * 2) !important;
     height: calc(var(--uc-icon-size) + var(--uc-padding-vert) * 2) !important;
     padding: var(--uc-padding-vert) var(--uc-padding-horz) !important;
@@ -371,3 +372,16 @@ findbar .findbar-closebutton {
     }
 }
 
+/* grab window from the single pixel above the urlbar */
+#TabsToolbar-customization-target {
+    -moz-box-align: center !important;
+}
+/* negative margins to adjust everything back into place */
+#urlbar-container {
+    margin-top: -1px !important;
+}
+#new-tab-button,
+#alltabs-button,
+#TabsToolbar .toolbarbutton-1 {
+    margin-top: -2px !important;
+}
