@@ -15,15 +15,14 @@
 
 * {
     animation: none !important;
-    /* this is not compatible with the overflow menu */
     transition: none !important;
 }
-
+/* fix overflow menu */
 .panel-viewstack {
     transition: transform 1ms !important;
 }
 
-/* hotfix ff65 */
+/* hotfix ff65-66 */
 #PopupAutoCompleteRichResult > richlistbox > * {
     transition: min-height 1ms 0ms !important;
 }
@@ -101,11 +100,10 @@
 
 
 /* URL BAR */
-#ucjs_urlbar-container {
+#urlbar-container {
     -moz-box-flex: 1 !important;
     margin: 0px 20px 1px 0px !important;
 }
-#ucjs_urlbar-container,
 #urlbar-container,
 #urlbar {
     max-width: 450px !important;
@@ -115,11 +113,9 @@
     max-height: 24px !important;
     min-height: 24px !important;
     height: 24px !important;
-    border-radius: 0px !important;
-}
-#urlbar-container,
-#urlbar {
+    
     margin: 0px !important;
+    border-radius: 0px !important;
 }
 #urlbar {
     border: 1px solid var(--uc-tab-border-color) !important;
