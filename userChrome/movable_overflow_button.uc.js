@@ -32,7 +32,7 @@ var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getSe
         id: widgetId,
         type: "button",
         defaultArea: CustomizableUI.AREA_NAVBAR,
-        label: "Overflow menu button",
+        label: "Overflow menu",
         tooltiptext: "More tools...",
         onCreated: function(node) {
             let originalMenu = node.ownerDocument.getElementById("nav-bar").overflowable;

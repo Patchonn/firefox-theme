@@ -32,7 +32,7 @@ var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getSe
         id: widgetId,
         type: "button",
         defaultArea: CustomizableUI.AREA_NAVBAR,
-        label: "Panel UI menu button",
+        label: "Main menu",
         tooltiptext: "Open menu",
         onCreated: function(node) {
             let originalMenu = node.ownerDocument.defaultView.PanelUI;
