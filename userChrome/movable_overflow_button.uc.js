@@ -16,7 +16,7 @@ var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getSe
             
             listener.css = Services.io.newURI("data:text/css;charset=utf-8," + encodeURIComponent('\
 #' + aWidgetId + '{\
-    list-style-image: url("chrome://mozapps/skin/extensions/extensionGeneric-16.svg") !important;\
+    list-style-image: url("chrome://browser/skin/chevron.svg");\
 }\
 #nav-bar-overflow-button {\
     display: none !important;\

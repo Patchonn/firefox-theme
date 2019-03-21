@@ -316,7 +316,7 @@ input.urlbar-input[textoverflow="start"]:not([focused]) {
 
 /* custom hover, apply it to all items in the bookmark bar */
 #bookmarks-menu-button,
-#nav-bar-overflow-button,
+#movable-overflow-button,
 #PlacesChevron,
 #PlacesToolbarItems > .bookmark-item {
     -moz-appearance: toolbarbutton !important;
@@ -324,14 +324,14 @@ input.urlbar-input[textoverflow="start"]:not([focused]) {
     margin-bottom: -1px !important;
 }
 #bookmarks-menu-button:hover:not([disabled]),
-#nav-bar-overflow-button:hover:not([disabled]),
+#movable-overflow-button:hover:not([disabled]),
 #PlacesToolbarItems > .bookmark-item:hover:not([disabled]) {
     background-color: -moz-menuhover;
 }
 
 
 /* OVERFLOW */
-#nav-bar-overflow-button {
+#movable-overflow-button {
     list-style-image: url(chrome://mozapps/skin/extensions/extensionGeneric-16.svg) !important;
 }
 #widget-overflow {
