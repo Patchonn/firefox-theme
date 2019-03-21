@@ -345,6 +345,21 @@ findbar .findbar-closebutton {
 }
 
 
+/* grab window from the single pixel above the urlbar */
+#TabsToolbar-customization-target {
+    -moz-box-align: center !important;
+}
+/* negative margins to adjust everything back into place */
+#urlbar-container {
+    margin-top: -3px !important;
+}
+#new-tab-button,
+#alltabs-button,
+#TabsToolbar .toolbarbutton-1 {
+    margin-top: -2px !important;
+}
+
+
 /* windows 10 fixes, not sure if they apply to 8 */
 @media (-moz-os-version:windows-win10), (-moz-os-version:windows-win8) {
     #main-window[sizemode="normal"] #titlebar {
@@ -366,18 +381,15 @@ findbar .findbar-closebutton {
     #PlacesToolbarItems > .bookmark-item {
         margin-top: 0px !important;
     }
+    
+    /* these margins must be different for whatever reason */
+    #urlbar-container {
+        margin-top: -1px !important;
+    }
+    #new-tab-button,
+    #alltabs-button,
+    #TabsToolbar .toolbarbutton-1 {
+        margin-top: -1px !important;
+    }
 }
 
-/* grab window from the single pixel above the urlbar */
-#TabsToolbar-customization-target {
-    -moz-box-align: center !important;
-}
-/* negative margins to adjust everything back into place */
-#urlbar-container {
-    margin-top: -1px !important;
-}
-#new-tab-button,
-#alltabs-button,
-#TabsToolbar .toolbarbutton-1 {
-    margin-top: -1px !important;
-}
