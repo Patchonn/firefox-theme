@@ -2,11 +2,12 @@
 
 (function() {
     let movable = [
+        // unfortunately, these don't work like this
         //"PanelUI-button",
+        //"nav-bar-overflow-button",
         "back-button",
         "forward-button",
         "urlbar-container",
-        //"nav-bar-overflow-button"
     ];
     
     for(let id of movable) {

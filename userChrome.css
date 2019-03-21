@@ -67,7 +67,7 @@
     margin-right: 0px !important;
 }
 /* NAV-ICONS */
-#TabsToolbar #PanelUI-menu-button {
+#TabsToolbar #movable-PanelUI-button {
     list-style-image: url("icons/menu.svg") !important;
 }
 #TabsToolbar #back-button {
