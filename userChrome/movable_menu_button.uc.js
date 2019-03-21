@@ -3,22 +3,6 @@ Components.utils.import("resource:///modules/CustomizableUI.jsm");
 let {Services} = Components.utils.import("resource://gre/modules/Services.jsm", {});
 let sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
 
-// let {XPCOMUtils} = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
-
-async function waitSelector(parent, query, exists) {
-    exists = exists !== undefined ? !!exists : true;
-    return new Promise((resolve) => {
-        let observer = new MutationObserver(function(mutationsList, observer) {
-            let elem = parent.querySelector(query);
-            if(exists == (elem !== null)) {
-                observer.disconnect();
-                resolve(elem);
-            }
-        });
-        observer.observe(parent, { attributes: true, childList: true, subtree: true });
-    });
-}
-
 (function(){
     let widgetId = "movable-PanelUI-button";
     
