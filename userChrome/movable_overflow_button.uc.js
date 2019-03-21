@@ -4,7 +4,7 @@ var {Services} = Components.utils.import("resource://gre/modules/Services.jsm", 
 var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
 
 (function(){
-    let widgetId = "movable-PanelUI-button";
+    let widgetId = "movable-overflow-button";
     
     let listener = {
         onWidgetCreated: function(aWidgetId, aArea) {
@@ -16,9 +16,9 @@ var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getSe
             
             listener.css = Services.io.newURI("data:text/css;charset=utf-8," + encodeURIComponent('\
 #' + aWidgetId + '{\
-    list-style-image: url("chrome://browser/skin/menu.svg");\
+    list-style-image: url("chrome://mozapps/skin/extensions/extensionGeneric-16.svg") !important;\
 }\
-#PanelUI-button {\
+#nav-bar-overflow-button {\
     display: none !important;\
 }\
 '), null, null);
@@ -32,21 +32,23 @@ var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getSe
         id: widgetId,
         type: "button",
         defaultArea: CustomizableUI.AREA_NAVBAR,
-        label: "Panel UI menu button",
-        tooltiptext: "Open menu",
+        label: "Overflow menu button",
+        tooltiptext: "More tools...",
         onCreated: function(node) {
-            let originalMenu = node.ownerDocument.defaultView.PanelUI;
+            let originalMenu = node.ownerDocument.getElementById("nav-bar").overflowable;
             
             // helper function to not repeat so much code
             function setEvent(event) {
                 node.addEventListener(event, function(){
-                    originalMenu.menuButton = node;
+                    originalMenu._chevron = node;
                 }, {"capture": true});
                 node.addEventListener(event, originalMenu);
             }
             
             setEvent("mousedown");
             setEvent("keypress");
+            //setEvent("dragend");
+            //setEvent("dragover");
         }
     });
 })();
