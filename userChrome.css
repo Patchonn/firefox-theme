@@ -114,7 +114,6 @@
     min-height: 24px !important;
     height: 24px !important;
     
-    margin: 0px !important;
     border-radius: 0px !important;
 }
 #urlbar {
@@ -122,6 +121,7 @@
     box-shadow: none !important;
     font-size: 11px !important;
     color: var(--uc-main-color-light) !important;
+    margin: 0px !important;
 }
 #urlbar:not([focused]) {
     background: none !important;
