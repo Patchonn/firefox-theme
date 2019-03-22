@@ -102,7 +102,7 @@
 /* URL BAR */
 #urlbar-container {
     -moz-box-flex: 1 !important;
-    margin: 0px 20px 1px 0px !important;
+    margin: 0px 20px 0px 0px !important;
 }
 #urlbar-container,
 #urlbar {
