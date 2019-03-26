@@ -22,9 +22,9 @@
     transition: transform 1ms !important;
 }
 
-/* hotfix ff65-66 */
-#PopupAutoCompleteRichResult > richlistbox > * {
-    transition: min-height 1ms 0ms !important;
+/* fix urlbar autocomplete results list not collapsing ff65-66 */
+#PopupAutoCompleteRichResult[autocompleteinput="urlbar"] > richlistbox > * {
+    transition: min-height 100ms 0ms !important;
 }
 
 /* hide useless crap */
