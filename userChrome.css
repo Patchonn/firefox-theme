@@ -102,8 +102,7 @@
 /* URL BAR */
 #urlbar-container {
     -moz-box-flex: 1 !important;
-    margin: 0px !important;
-    margin-right: 20px !important;
+    margin: 0px 20px 0px 0px !important;
 }
 #urlbar-container,
 #urlbar {
@@ -321,7 +320,8 @@ input.urlbar-input[textoverflow="start"]:not([focused]) {
 #PlacesChevron,
 #PlacesToolbarItems > .bookmark-item {
     -moz-appearance: toolbarbutton !important;
-    margin-top: -1px !important;
+    /* this might only be needed in windows 7 */
+    /*margin-top: -1px !important;*/
     margin-bottom: -1px !important;
 }
 #bookmarks-menu-button:hover:not([disabled]),
