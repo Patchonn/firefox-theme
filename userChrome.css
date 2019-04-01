@@ -11,6 +11,7 @@
     /* make it 1px to show the border */
     max-height: 1px !important;
     min-height: 1px !important;
+    margin-bottom: -2px !important;
 }
 
 * {
@@ -296,7 +297,7 @@ input.urlbar-input[textoverflow="start"]:not([focused]) {
 
 /* BOOKMARKS */
 #PersonalToolbar {
-    padding: 0px 0px 1px !important;
+    padding: 1px 0px !important;
 }
 .bookmark-item {
     color: var(--uc-main-color) !important;
@@ -315,18 +316,17 @@ input.urlbar-input[textoverflow="start"]:not([focused]) {
 }
 
 /* custom hover, apply it to all items in the bookmark bar */
-#bookmarks-menu-button,
-#movable-overflow-button,
 #PlacesChevron,
-#PlacesToolbarItems > .bookmark-item {
+#PlacesToolbarItems > .bookmark-item,
+#PersonalToolbar > toolbarbutton {
     -moz-appearance: toolbarbutton !important;
     /* this might only be needed in windows 7 */
     /*margin-top: -1px !important;*/
     margin-bottom: -1px !important;
 }
-#bookmarks-menu-button:hover:not([disabled]),
-#movable-overflow-button:hover:not([disabled]),
-#PlacesToolbarItems > .bookmark-item:hover:not([disabled]) {
+#PlacesChevron:hover:not([disabled]),
+#PlacesToolbarItems > .bookmark-item:hover:not([disabled]),
+#PersonalToolbar > toolbarbutton:hover:not([disabled]) {
     background-color: -moz-menuhover;
 }
 
