@@ -37,9 +37,9 @@
 #identity-box, /* site security information */
 .urlbar-history-dropmarker, /* dropdown */
 #pageActionButton, /* three dots */
-#page-action-buttons > :not(#star-button), /* every button that isn't the star */
+#page-action-buttons > :not(#star-button-box), /* every button that isn't the star */
 #star-button:not([starred]), /* bookmark star if not bookmarked */
-#urlbar[focused] #star-button, /* bookmark star while focused */
+#urlbar[focused] #star-button-box, /* bookmark star while focused */
 .urlbar-go-button, /* go button */
 
 /* tabs */
