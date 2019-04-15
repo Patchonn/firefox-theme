@@ -367,7 +367,7 @@ findbar .findbar-closebutton {
         margin-top: 2px !important;
     }
     #main-window[sizemode="normal"] #titlebar + * {
-        margin-top: -2px !important;
+        margin-top: -6px !important;
     }
     #main-window[sizemode="normal"] .titlebar-buttonbox .titlebar-button {
         margin-top: -2px !important;
@@ -391,6 +391,11 @@ findbar .findbar-closebutton {
     #alltabs-button,
     #TabsToolbar .toolbarbutton-1 {
         margin-top: -1px !important;
+    }
+    
+    /* hotfix because the bookmarks toolbar is clipping */
+    #main-window:not([customizing]) #nav-bar {
+        margin-bottom: -1px !important;
     }
 }
 
