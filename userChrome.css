@@ -367,7 +367,7 @@ findbar .findbar-closebutton {
         margin-top: 2px !important;
     }
     #main-window[sizemode="normal"] #titlebar + * {
-        margin-top: -6px !important;
+        margin-top: -2px !important;
     }
     #main-window[sizemode="normal"] .titlebar-buttonbox .titlebar-button {
         margin-top: -2px !important;
