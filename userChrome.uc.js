@@ -12,4 +12,5 @@ load_js_script("./userChrome/newtab.uc.js");
 load_js_script("./userChrome/restart_button.uc.js");
 load_js_script("./userChrome/results_into_urlbar.uc.js");
 load_js_script("./userChrome/new_tab_command.uc.js");
+load_js_script("./userChrome/urlbar_tab_to_browser.uc.js");
 
