@@ -3,7 +3,7 @@
 @import "./_defaultColors.css";
 @import "./_customColors.css";
 
-@import "./ac_popup_classic_with_two_lines_fx64.css";
+/* @import "./ac_popup_classic_with_two_lines_fx64.css"; */
 @import "./ac_popup_searchwith_and_visit_items_hidden.css";
 @import "./context_bfrsb_labels_without_icons.css";
 
@@ -25,7 +25,8 @@
 
 /* fix urlbar autocomplete results list not collapsing ff65-66 */
 #PopupAutoCompleteRichResult[autocompleteinput="urlbar"] > richlistbox > * {
-    transition: min-height 100ms 0ms !important;
+    /* TODO try to find exactly which property(ies) need to */
+    transition: all 100ms 0ms !important;
 }
 
 /* hide useless crap */
@@ -161,7 +162,6 @@ input.urlbar-input[textoverflow="start"]:not([focused]) {
 
 /* RICH RESULTS */
 #PopupAutoCompleteRichResult[autocompleteinput="urlbar"] {
-    -moz-binding: url("bindings/urlbar.xml#PopupAutoCompleteRichResult") !important;
     border: 1px solid var(--uc-tab-border-color) !important;
 }
 
