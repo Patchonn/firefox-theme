@@ -23,10 +23,9 @@
     transition: transform 1ms !important;
 }
 
-/* fix urlbar autocomplete results list not collapsing ff65-66 */
-#PopupAutoCompleteRichResult[autocompleteinput="urlbar"] > richlistbox > * {
-    /* TODO try to find exactly which property(ies) need to */
-    transition: all 100ms 0ms !important;
+/* fix urlbar autocomplete results list not collapsing ff67 */
+#PopupAutoCompleteRichResult[autocompleteinput="urlbar"] > richlistbox > richlistitem {
+    transition: min-height 100ms 0s, visibility 100ms 0s !important;
 }
 
 /* hide useless crap */
