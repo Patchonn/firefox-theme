@@ -34,6 +34,9 @@
 #main-window:not([customizing]) #back-button[disabled],
 #main-window:not([customizing]) #forward-button[disabled],
 
+
+#urlbarView-row-0, /* visit item (should always be the first one) */
+
 /* urlbar */
 #identity-box, /* site security information */
 .urlbar-history-dropmarker, /* dropdown */
@@ -163,6 +166,9 @@ input.urlbar-input[textoverflow="start"]:not([focused]) {
 /* RICH RESULTS */
 #PopupAutoCompleteRichResult[autocompleteinput="urlbar"] {
     border: 1px solid var(--uc-tab-border-color) !important;
+}
+#urlbar-results {
+  margin-top: -1px !important;
 }
 
 
