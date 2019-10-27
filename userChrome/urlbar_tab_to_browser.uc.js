@@ -1,9 +1,5 @@
-/*
-how I hate this company
-now they added a forced tabindex on most of the ui
-obviously, no one would ever rely on this. let's change it!
-*/
 
+// smh
 (function() {
     let urlbar = document.getElementById("urlbar");
     

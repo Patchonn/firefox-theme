@@ -38,6 +38,7 @@
 #urlbarView-row-0, /* visit item (should always be the first one) */
 
 /* urlbar */
+#tracking-protection-icon-container, /* tracking protection? */
 #identity-box, /* site security information */
 .urlbar-history-dropmarker, /* dropdown */
 #pageActionButton, /* three dots */
@@ -95,7 +96,7 @@
     /* the arrows flip by themselves */
     list-style-image: url("icons/arrow-left.svg") !important;
 }
-#TabsToolbar .tabs-newtab-button,
+#TabsToolbar #tabs-newtab-button,
 #TabsToolbar #new-tab-button {
     list-style-image: url("icons/new.svg") !important;
 }
@@ -108,6 +109,7 @@
 #urlbar-container {
     -moz-box-flex: 1 !important;
     margin: 0px 20px 0px 0px !important;
+    padding: 0px !important;
 }
 #urlbar-container,
 #urlbar {
@@ -135,10 +137,10 @@
 #urlbar[focused]{
     color: var(--uc-main-color) !important;
 }
-.urlbar-input {
+#urlbar-input {
     padding: 0px 2px !important;
 }
-.urlbar-input::placeholder {
+#urlbar-input::placeholder {
     color: var(--uc-main-color-light) !important;
     opacity: 0.7 !important;
 }
@@ -210,7 +212,7 @@ input.urlbar-input[textoverflow="start"]:not([focused]) {
     fill-opacity: 1 !important;
 }
 /* drag the window from the new tab button */
-.tabs-newtab-button {
+#tabs-newtab-button {
     /* enables events to pass through */
     pointer-events: none !important;
     /* enables dragging and resizing with double click */
