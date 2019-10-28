@@ -35,7 +35,7 @@ setTimeout(function(){
 	  var urlbar_results = 8;
 	  
 	  if(parseInt(Services.appinfo.version) >= 70)
-	    urlbar_width = urlbar_width - 4;
+	    urlbar_width = urlbar_width - 2;
 	  
 	  try{
 	    urlbar_results = Services.prefs.getBranch("browser.urlbar.").getIntPref("maxRichResults");
@@ -43,7 +43,7 @@ setTimeout(function(){
 	  
 	  
 	  var fx70_workaround_code = '';
-	  
+	  /*
 	  if(fx70_workaround && parseInt(Services.appinfo.version) == 70)
 		fx70_workaround_code = ' \
 			#urlbar .search-one-offs { \
@@ -60,7 +60,7 @@ setTimeout(function(){
 			  margin-inline-end: unset !important; \
 			} \
 		';
-	  
+	  */
 	  var hide_visit_search_items_code = '';
 	  
 	  if(hide_visit_search_items)
@@ -169,7 +169,7 @@ setTimeout(function(){
 		  border: 1px solid ThreeDShadow !important; \
 		} \
 		#urlbar-input-container + .urlbarView:not(.megabar){ \
-		  margin-top: -6px !important; \
+		  margin-top: -3px !important; \
 		} \
 		#urlbar:not(.megabar) .search-one-offs { \
 		  padding-inline-start: unset !important; \

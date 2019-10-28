@@ -35,6 +35,7 @@
 #urlbarView-row-0, /* visit item (should always be the first one) */
 
 /* urlbar */
+#urlbar-go-button, /* go button */
 #tracking-protection-icon-container, /* tracking protection? */
 #identity-box, /* site security information */
 .urlbar-history-dropmarker, /* dropdown */
@@ -121,17 +122,22 @@
     border-radius: 0px !important;
 }
 #urlbar {
-    border: 1px solid var(--uc-tab-border-color) !important;
+    background: none !important;
+    border: none !important;
     box-shadow: none !important;
     font-size: 11px !important;
     color: var(--uc-main-color-light) !important;
     margin: 0px !important;
 }
-#urlbar:not([focused]) {
+#urlbar-input-container {
+    border: 1px solid var(--uc-tab-border-color) !important;
+    background: white !important;
+}
+#urlbar:not([focused]) #urlbar-input-container {
     background: none !important;
     border: 1px solid transparent !important;
 }
-#urlbar[focused]{
+#urlbar[focused] {
     color: var(--uc-main-color) !important;
 }
 #urlbar-input {
@@ -141,6 +147,8 @@
     color: var(--uc-main-color-light) !important;
     opacity: 0.7 !important;
 }
+
+/* placeholder while customizing so it is visible */
 #main-window[customizing] #urlbar {
     border: 1px solid rgba(0,0,0,0.3) !important;
     background: repeating-linear-gradient(
