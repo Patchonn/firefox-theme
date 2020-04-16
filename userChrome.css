@@ -3,7 +3,12 @@
 @import "./_defaultColors.css";
 @import "./_customColors.css";
 
-@import "./context_bfrsb_labels_without_icons.css";
+@import "./css/context_bfrsb_labels_without_icons.css";
+
+@import "./css/megabar_optimizations.css";
+@import "./css/ac_popup_megabar_compact_results.css";
+@import "./css/ac_popup_megabar_searchwith_and_visit_items_hidden.css";
+
 
 #main-window:not([customizing]) #nav-bar {
     /* make it 1px to show the border */
@@ -22,17 +27,17 @@
 }
 
 /* fix urlbar autocomplete results list not collapsing ff67 */
+/*
 #PopupAutoCompleteRichResult[autocompleteinput="urlbar"] > richlistbox > richlistitem {
     transition: min-height 100ms 0s, visibility 100ms 0s !important;
 }
+*/
 
 /* hide useless crap */
 /* navigation */
 #main-window:not([customizing]) #back-button[disabled],
 #main-window:not([customizing]) #forward-button[disabled],
 
-
-#urlbarView-row-0, /* visit item (should always be the first one) */
 
 /* urlbar */
 #urlbar-go-button, /* go button */
@@ -54,7 +59,7 @@
 
 
 /* NAVIGATION */
-#nav-bar {
+#nav-barcc {
     box-shadow: 0 -1px 0 var(--uc-tab-border-color) !important;
     border-color: var(--uc-tab-border-color) !important;
     background: var(--uc-toolbar-background) !important;
@@ -100,82 +105,6 @@
 }
 #TabsToolbar > .titlebar-buttonbox-container {
     /*! margin-left: 20px !important; */
-}
-
-
-/* URL BAR */
-#urlbar-container {
-    -moz-box-flex: 1 !important;
-    margin: 0px 20px 0px 0px !important;
-    padding: 0px !important;
-}
-#urlbar-container,
-#urlbar {
-    max-width: 450px !important;
-    min-width: 300px !important;
-    width: 450px !important;
-    
-    max-height: 24px !important;
-    min-height: 24px !important;
-    height: 24px !important;
-    
-    border-radius: 0px !important;
-}
-#urlbar {
-    background: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    font-size: 11px !important;
-    color: var(--uc-main-color-light) !important;
-    margin: 0px !important;
-}
-#urlbar-input-container {
-    border: 1px solid var(--uc-tab-border-color) !important;
-    background: white !important;
-}
-#urlbar:not([focused]) #urlbar-input-container {
-    background: none !important;
-    border: 1px solid transparent !important;
-}
-#urlbar[focused] {
-    color: var(--uc-main-color) !important;
-}
-#urlbar-input {
-    padding: 0px 2px !important;
-}
-#urlbar-input::placeholder {
-    color: var(--uc-main-color-light) !important;
-    opacity: 0.7 !important;
-}
-
-/* placeholder while customizing so it is visible */
-#main-window[customizing] #urlbar {
-    border: 1px solid rgba(0,0,0,0.3) !important;
-    background: repeating-linear-gradient(
-        -45deg,
-        rgba(0,0,0,0.3),
-        rgba(0,0,0,0.3) 5px,
-        rgba(0,0,0,0) 5px,
-        rgba(0,0,0,0) 12px
-    ) !important;
-    background-clip: padding-box !important;
-    border-radius: 5px !important;
-}
-
-/* hide scheme from the start of the urlbar when "scrolled" to the end */
-input.urlbar-scheme[textoverflow="start"]:not([focused]):valid {
-    display: none !important;
-}
-input.urlbar-input[textoverflow="start"]:not([focused]) {
-    mask-image: linear-gradient(to right, transparent, black calc(3ch)) !important;
-}
-
-/* RICH RESULTS */
-#PopupAutoCompleteRichResult[autocompleteinput="urlbar"] {
-    border: 1px solid var(--uc-tab-border-color) !important;
-}
-#urlbar-results {
-  margin-top: -1px !important;
 }
 
 
@@ -363,52 +292,95 @@ findbar .findbar-closebutton {
 #TabsToolbar-customization-target {
     -moz-box-align: center !important;
 }
-/* negative margins to adjust everything back into place */
-#urlbar-container {
-    margin-top: -3px !important;
+
+
+#main-window[sizemode="normal"] #titlebar {
+    margin-top: 2px !important;
 }
-#new-tab-button,
-#alltabs-button,
-#TabsToolbar .toolbarbutton-1 {
+#main-window[sizemode="normal"] #titlebar + * {
+    margin-top: -2px !important;
+}
+#main-window[sizemode="normal"] .titlebar-buttonbox .titlebar-button {
     margin-top: -2px !important;
 }
 
-
-/* windows 10 fixes, not sure if they apply to 8 */
-@media (-moz-os-version:windows-win10), (-moz-os-version:windows-win8) {
-    #main-window[sizemode="normal"] #titlebar {
-        margin-top: 2px !important;
-    }
-    #main-window[sizemode="normal"] #titlebar + * {
-        margin-top: -2px !important;
-    }
-    #main-window[sizemode="normal"] .titlebar-buttonbox .titlebar-button {
-        margin-top: -2px !important;
-    }
-    .titlebar-buttonbox .titlebar-button {
-        max-height: 26px !important;
-        min-height: 26px !important;
-        padding: 6px 12px !important;
-    }
-    #bookmarks-menu-button,
-    #nav-bar-overflow-button,
-    #PlacesToolbarItems > .bookmark-item {
-        margin-top: 0px !important;
-    }
-    
-    /* these margins must be different for whatever reason */
-    #urlbar-container {
-        margin-top: -1px !important;
-    }
-    #new-tab-button,
-    #alltabs-button,
-    #TabsToolbar .toolbarbutton-1 {
-        margin-top: -1px !important;
-    }
-    
-    /* hotfix because the bookmarks toolbar is clipping */
-    #main-window:not([customizing]) #nav-bar {
-        margin-bottom: -1px !important;
-    }
+.titlebar-buttonbox .titlebar-button {
+    max-height: 26px !important;
+    min-height: 26px !important;
+    padding: 6px 12px !important;
 }
+#bookmarks-menu-button,
+#nav-bar-overflow-button,
+#PlacesToolbarItems > .bookmark-item {
+    margin-top: 0px !important;
+}
+
+#new-tab-button,
+#alltabs-button,
+#TabsToolbar .toolbarbutton-1 {
+    margin-top: -1px !important;
+}
+
+/* hotfix because the bookmarks toolbar is clipping */
+#main-window:not([customizing]) #nav-bar {
+    margin-bottom: -1px !important;
+}
+
+/* URL BAR */
+/*
+#urlbar-input-container,
+#urlbar-container,
+#urlbar {
+    max-width: 450px !important;
+    min-width: 300px !important;
+    width: 450px !important;
+    
+    max-height: 24px !important;
+    min-height: 24px !important;
+    height: 24px !important;
+    
+    border-radius: 0px !important;
+}
+*/
+#urlbar-container {
+    -moz-box-flex: 1 !important;
+    margin: 0px 20px 0px 0px !important;
+    padding: 0px !important;
+    
+    max-width: 450px !important;
+    min-width: 300px !important;
+    width: 450px !important;
+    
+    border-radius: 0px !important;
+}
+#urlbar {
+    font-size: 11px !important;
+    color: var(--uc-main-color-light) !important;
+}
+
+#urlbar:not([focused]) > #urlbar-background {
+    display: none !important;
+}
+#urlbar > #urlbar-background {
+    border: 1px solid var(--uc-tab-border-color) !important;
+    background: white !important;
+    border-radius: 0px !important;
+    box-shadow: none !important;
+    /*display: none !important;*/
+}
+
+.urlbarView-results {
+    padding-block: 0px !important;
+}
+.urlbarView-row,
+.urlbarView-row-inner {
+    border-radius: 0px !important;
+}
+
+/*.urlbarView.megabar .urlbarView-body-inner {
+    width: 100%;
+    border-top: 1px solid var(--urlbar-separator-color);
+}*/
+
+
 
