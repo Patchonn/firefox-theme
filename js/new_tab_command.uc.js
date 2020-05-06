@@ -25,8 +25,6 @@
     
     // need to filter rightclick somehow
     let newtab_full = document.getElementById("new-tab-button");
-    console.log(newtab_full);
-    console.log(await waitSelector(document, "#new-tab-button"));
     newtab_full.removeAttribute("command");
     newtab_full.removeAttribute("oncommand");
     newtab_full.setAttribute("onclick", "BrowserOpenTab()");
