@@ -19,19 +19,14 @@
 
 * {
     animation: none !important;
+}
+*:not(tab) {
     transition: none !important;
 }
 /* fix overflow menu */
 .panel-viewstack {
     transition: transform 1ms !important;
 }
-
-/* fix urlbar autocomplete results list not collapsing ff67 */
-/*
-#PopupAutoCompleteRichResult[autocompleteinput="urlbar"] > richlistbox > richlistitem {
-    transition: min-height 100ms 0s, visibility 100ms 0s !important;
-}
-*/
 
 /* hide useless crap */
 /* navigation */
@@ -51,6 +46,7 @@
 .urlbar-go-button, /* go button */
 
 /* tabs */
+.tab-loading-burst,
 .titlebar-spacer,
 #tabbrowser-tabs .tabbrowser-tab .tab-close-button /* close tab button */
 {
@@ -275,7 +271,7 @@
 
 /* OVERFLOW */
 #movable-overflow-button {
-    list-style-image: url(chrome://mozapps/skin/extensions/extensionGeneric-16.svg) !important;
+    list-style-image: url(chrome://mozapps/skin/extensions/category-extensions.svg) !important;
 }
 #widget-overflow {
     margin-top: 3px !important;
