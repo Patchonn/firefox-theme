@@ -1,14 +1,21 @@
 /* AGENT_SHEET */
 
-@import "./_defaultColors.css";
-@import "./_customColors.css";
-
 @import "./css/context_bfrsb_labels_without_icons.css";
 
-@import "./css/megabar_optimizations.css";
+@import "./css/megabar_expanding_breakout_disabled.css";
 @import "./css/ac_popup_megabar_compact_results.css";
 @import "./css/ac_popup_megabar_searchwith_and_visit_items_hidden.css";
+@import "./css/ac_popup_megabar_title_and_url_two_lines.css";
 
+#main-window {
+    --uc-main-color: black;
+    --uc-main-color-light: black;
+    
+    --uc-tab-border-color: rgb(160, 160, 160);
+    
+    --uc-toolbar-background: rgb(245, 245, 245);
+    --uc-inactive-tab-background: rgb(227, 228, 230);
+}
 
 #main-window:not([customizing]) #nav-bar {
     /* make it 1px to show the border */
@@ -28,7 +35,9 @@
     transition: transform 1ms !important;
 }
 
-/* hide useless crap */
+/* fixes customization when using the movable overflow menu script */
+#customization-panelWrapper > .panel-arrowbox,
+
 /* navigation */
 #main-window:not([customizing]) #back-button[disabled],
 #main-window:not([customizing]) #forward-button[disabled],
@@ -157,24 +166,22 @@
     /* the middle click action needs to be changed via userChrome.js */
     opacity: 0 !important;
 }
-.arrowscrollbox-overflow-start-indicator,
-.arrowscrollbox-overflow-end-indicator {
-    border-color: var(--uc-tab-border-color) !important;
-    border-image: none !important;
-}
+
 
 /* thin tabs */
-#main-window[sizemode="normal"] #TabsToolbar-customization-target {
-    margin-top: -2px !important;
-}
 #TabsToolbar {
-    max-height: 32px !important;
-    min-height: 26px !important;
+    max-height: 27px !important;
+    min-height: 27px !important;
     height: 27px !important;
 }
 .tabbrowser-tab {
-    max-height: 27px !important;
-    min-height: 26px !important;
+    max-height: 25px !important;
+    min-height: 25px !important;
+}
+.tabbrowser-tab[selected] {
+    max-height: 28px !important;
+    min-height: 27px !important;
+    margin-top: -1px !important;
 }
 .tab-content {
     padding: 0 5px !important;
@@ -182,10 +189,10 @@
 .tab-throbber, .tab-icon-pending, .tab-icon-image, .tab-sharing-icon-overlay, .tab-icon-sound, .tab-close-button {
     margin-top: 0px !important;
 }
-#tabbrowser-tabs > .tabbrowser-arrowscrollbox {
-    min-height: 27px !important;
-    max-height: 27px !important;
+#tabbrowser-arrowscrollbox {
+	padding-bottom: 2px !important;
 }
+
 /* thin icons */
 #TabsToolbar-customization-target .toolbarbutton-1 > .toolbarbutton-badge-stack {
     padding: 0px !important;
@@ -202,11 +209,12 @@
     --uc-icon-size: 18px;
     */
     --uc-padding-horz: 2px;
-    --uc-padding-vert: 3px;
+    --uc-padding-top: 3px;
+    --uc-padding-bottom: 4px;
     --uc-icon-size: 20px;
     padding: 0px !important;
-    min-height: calc(var(--uc-icon-size) + var(--uc-padding-vert) * 2) !important;
-    max-height: var(--uc-icon-size) !important;
+    min-height: calc(var(--uc-icon-size) + var(--uc-padding-top) + var(--uc-padding-bottom)) !important;
+    max-height: calc(var(--uc-icon-size) + var(--uc-padding-top) + var(--uc-padding-bottom)) !important;
 }
 #new-tab-button .toolbarbutton-icon,
 #alltabs-button .toolbarbutton-icon,
@@ -214,8 +222,8 @@
 #tabbrowser-tabs .scrollbutton-down .toolbarbutton-icon,
 #TabsToolbar .toolbarbutton-1 .toolbarbutton-icon {
     width: calc(var(--uc-icon-size) + var(--uc-padding-horz) * 2) !important;
-    height: calc(var(--uc-icon-size) + var(--uc-padding-vert) * 2) !important;
-    padding: var(--uc-padding-vert) var(--uc-padding-horz) !important;
+    height: calc(var(--uc-icon-size) + var(--uc-padding-top) + var(--uc-padding-bottom)) !important;
+    padding: var(--uc-padding-top) var(--uc-padding-horz) var(--uc-padding-bottom) !important;
 }
 /*
 #TabsToolbar-customization-target #PanelUI-menu-button {
@@ -254,14 +262,6 @@
 }
 
 /* custom hover, apply it to all items in the bookmark bar */
-#PlacesChevron,
-#PlacesToolbarItems > .bookmark-item,
-#PersonalToolbar > toolbarbutton {
-    -moz-appearance: toolbarbutton !important;
-    /* this might only be needed in windows 7 */
-    /*margin-top: -1px !important;*/
-    margin-bottom: -1px !important;
-}
 #PlacesChevron:hover:not([disabled]),
 #PlacesToolbarItems > .bookmark-item:hover:not([disabled]),
 #PersonalToolbar > toolbarbutton:hover:not([disabled]) {
@@ -289,7 +289,7 @@ findbar .findbar-closebutton {
     -moz-box-align: center !important;
 }
 
-
+/*
 #main-window[sizemode="normal"] #titlebar {
     margin-top: 2px !important;
 }
@@ -299,7 +299,7 @@ findbar .findbar-closebutton {
 #main-window[sizemode="normal"] .titlebar-buttonbox .titlebar-button {
     margin-top: -2px !important;
 }
-
+*/
 .titlebar-buttonbox .titlebar-button {
     max-height: 26px !important;
     min-height: 26px !important;
@@ -323,21 +323,6 @@ findbar .findbar-closebutton {
 }
 
 /* URL BAR */
-/*
-#urlbar-input-container,
-#urlbar-container,
-#urlbar {
-    max-width: 450px !important;
-    min-width: 300px !important;
-    width: 450px !important;
-    
-    max-height: 24px !important;
-    min-height: 24px !important;
-    height: 24px !important;
-    
-    border-radius: 0px !important;
-}
-*/
 #urlbar-container {
     -moz-box-flex: 1 !important;
     margin: 0px 20px 0px 0px !important;
@@ -373,10 +358,8 @@ findbar .findbar-closebutton {
     border-radius: 0px !important;
 }
 
-/*.urlbarView.megabar .urlbarView-body-inner {
-    width: 100%;
-    border-top: 1px solid var(--urlbar-separator-color);
-}*/
-
+.urlbarView-body-inner {
+  border-top: 1px solid var(--urlbar-separator-color) !important;
+}
 
 
