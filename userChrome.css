@@ -35,13 +35,15 @@
     transition: transform 1ms !important;
 }
 
+/* only show downloads icon if something is downloading */
+#downloads-button:not([progress="true"]),
+
 /* fixes customization when using the movable overflow menu script */
 #customization-panelWrapper > .panel-arrowbox,
 
 /* navigation */
 #main-window:not([customizing]) #back-button[disabled],
 #main-window:not([customizing]) #forward-button[disabled],
-
 
 /* urlbar */
 #urlbar-go-button, /* go button */
